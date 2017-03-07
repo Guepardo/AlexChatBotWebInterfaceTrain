@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
 
   # GET /answers
   def index
-    @answers = Answer.all
+    @answers = Dialog.find(params[:dialog_id]).answers
 
     render json: @answers
   end

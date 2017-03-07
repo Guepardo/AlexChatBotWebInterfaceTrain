@@ -8,6 +8,7 @@ const state = {
   intents: [],  
   topics: [], 
   currentBot: 'undefined', 
+  currentTopic: undefined, 
   intentUpdateMode: false
 }
 
@@ -34,6 +35,10 @@ const mutations = {
 
   SET_CURRENT_BOT(state, botId){
   	state.currentBot = botId
+  }, 
+
+  SET_CURRENT_TOPIC(state, topic){
+    state.currentTopic = topic
   }, 
 
   SET_TOPICS(state, topics){
@@ -71,8 +76,12 @@ const actions = {
   }, 
 
   setCurrentBot({commit}, bot){
-  	commit('SET_CURRENT_BOT',bot)
+  	commit('SET_CURRENT_BOT', bot)
   }, 
+
+  setCurrentTopic({commit}, topic){
+    commit('SET_CURRENT_TOPIC', topic)
+  },
 
   setIntentUpdateMode({commit}, intentId){
     commit('SET_INTENT_UPDATE_MODE', intentId)
@@ -84,6 +93,7 @@ const getters = {
   intents: state => state.intents,
   topics: state => state.topics, 
   currentBot: state => state.currentBot, 
+  currentTopic: state => state.currentTopic, 
   intentUpdateMode: state => state.intentUpdateMode
 }
 

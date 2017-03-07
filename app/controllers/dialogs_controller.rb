@@ -3,7 +3,7 @@ class DialogsController < ApplicationController
 
   # GET /dialogs
   def index
-    @dialogs = Dialog.all
+    @dialogs = Topic.find(params[:topic_id]).dialogs
 
     render json: @dialogs
   end
@@ -18,7 +18,7 @@ class DialogsController < ApplicationController
     @dialog = Dialog.new(dialog_params)
 
     if @dialog.save
-      render json: @dialog, status: :created, location: @dialog
+      render json: @dialog, status: :created
     else
       render json: @dialog.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class DialogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def dialog_params
-      params.fetch(:dialog, {})
+      params.permit(:name, :topic_id)
     end
 end

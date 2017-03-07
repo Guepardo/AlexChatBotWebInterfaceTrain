@@ -6,11 +6,19 @@
     <form id="new_dialog_form"class="col s12">
        <div class="row">
          <div class="input-field col s12">
+           <input name='name' type="text" class="validate" v-model='name'>
+           <label for="first_name">Dialog Name</label>
+         </div>
+       </div>
+
+
+       <div class="row">
+         <div class="input-field col s12">
             <select>
-		      <option value="" disabled selected>Choose your option</option>
-		      <option v-for="intent in intents" v-bind:value="intent.id" >#{{intent.name}}</option>
-		    </select>
-		    <label>Select an Intent</label>
+    		      <option value="" disabled selected>Choose your option</option>
+    		      <option v-for="intent in intents" v-bind:value="intent.id" >#{{intent.name}}</option>
+    		    </select>
+    		    <label>Select an Intent</label>
          </div>
        </div>
 
@@ -70,7 +78,7 @@ export default{
   methods: {
   	newAnswer: function (){
   	  this.answers.push(this.answer)
-	  this.answer = ''
+	    this.answer = ''
   	}, 
 
   	removeAnswer: function(index){
@@ -78,7 +86,28 @@ export default{
   	}, 
 
   	createDialog: function(){
-  		
+      let botId = store.getters.currentBot.id
+      let topicId = store.getters.currentTopic.id
+  		let data = $('#new_dialog_form').serializeArray()
+
+      let answers = []
+      for(let answer of this.answers){
+        let temp = { text: answer }
+        answers.push(temp)
+      }
+
+      $.post('/bots/'+this.bot_id+'/topics/'+topicId+'/dialogs', data).
+      done(function(data){
+        store.dispatch('addIntent', data)
+          console.log(data)
+          for(let temp of answers){
+            $.post('/bots/'+this.bot_id+'/topics/'+topicId+'/dialogs/'+data.id+'/answers', temp)
+          .done((data) => {
+            console.log(data)
+          })
+          }
+          $('#modal-new-dialog').modal('close')
+      })
   	}
   }, 
 

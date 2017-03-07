@@ -26,9 +26,9 @@ export default{
 	name: 'ModalNewTopic', 
 
 	data(){
-      return {
-        topic: {id: null, name: ''}
-      }
+    return {
+      topic: {id: null, name: ''}
+    }
 	}, 
 
   created (){

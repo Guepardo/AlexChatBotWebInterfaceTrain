@@ -23,11 +23,7 @@
   	name: 'Topic', 
   	
   	mounted() {
-      $('.modal').modal();
-	  }, 
-
-    created() {
-      $.get('/bots/'+this.bot.id+'/topics').
+	    $.get('/bots/'+this.bot.id+'/topics').
       done((data) => {
         console.log(data)
         store.dispatch('setTopics', data)

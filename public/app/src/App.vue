@@ -8,10 +8,16 @@
 </template>
 
 <script>
+import store from './store/store'
 import Navbar from './components/Navbar.vue'
 
 export default {
   name: 'app', 
+
+  created(){
+
+  }, 
+
   components: {
     Navbar
   }

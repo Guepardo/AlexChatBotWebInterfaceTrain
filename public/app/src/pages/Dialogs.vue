@@ -41,6 +41,7 @@ export default{
 
   methods: {
   	createDialog: function(){
+      store.dispatch('setCurrentTopic', this.topic)
       $('#modal-new-dialog').modal('open')
   	}
   }, 
