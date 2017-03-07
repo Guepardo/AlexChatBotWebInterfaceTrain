@@ -31,7 +31,11 @@ export default{
     }
 	}, 
 
-  created (){
+  mounted(){
+    $('.modal').modal()
+  }, 
+
+  created(){
     this.botId = store.getters.currentBot.id
   }, 
 

@@ -15,7 +15,7 @@ export default {
   name: 'app', 
 
   created(){
-
+    
   }, 
 
   components: {
