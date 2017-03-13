@@ -3,6 +3,7 @@
 	<div class="row">
 	  <h4>Topics to {{bot.name}}</h4>
 	  <a class="waves-effect waves-light btn" @click="newTopic">New Topic</a>
+    <a class="waves-effect waves-light btn" @click="redirectToIntent">Intent Topic</a>
 	</div>
 
 	<div class="row" style="height: 500px">
@@ -23,6 +24,9 @@
   	name: 'Topic', 
   	
   	mounted() {
+      if(this.bot.id == undefined)
+        this.$router.push('/')
+
 	    $.get('/bots/'+this.bot.id+'/topics').
       done((data) => {
         console.log(data)
@@ -36,13 +40,17 @@
     }, 
 
   	data() {
-  	  return {}
+  	  return {bot_id: undefined}
   	}, 
 
   	methods: {
   	  newTopic: function(){
   	    $('#modal-new-topic').modal('open')
-  	  }
+  	  }, 
+
+      redirectToIntent: function(){
+        this.$router.push('/intent')
+      }
   	}, 
 
   	computed:{

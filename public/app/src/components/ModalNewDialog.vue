@@ -97,15 +97,16 @@ export default{
       }
 
       $.post('/bots/'+this.bot_id+'/topics/'+topicId+'/dialogs', data).
-      done(function(data){
-        store.dispatch('addIntent', data)
-          console.log(data)
+      done((sub_data) => {
+        store.dispatch('addIntent', sub_data)
+          console.log(sub_data)
           for(let temp of answers){
-            $.post('/bots/'+this.bot_id+'/topics/'+topicId+'/dialogs/'+data.id+'/answers', temp)
-          .done((data) => {
-            console.log(data)
-          })
+            $.post('/bots/'+botId+'/topics/'+topicId+'/dialogs/'+sub_data.id+'/answers', temp)
+            .done((sub_data) => {
+              console.log(sub_data)
+            })
           }
+          this.$emit('updateOnNewDialog')
           $('#modal-new-dialog').modal('close')
       })
   	}

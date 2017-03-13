@@ -1,4 +1,4 @@
-<template>
+  <template>
 <div class="row">
 <hr>
   <h5>{{topic.name}} 
@@ -22,11 +22,11 @@ export default{
   props: ['topic'], 
 
   created() {
-  	let botId = store.getters.currentBot.id
-  	$.get('/bots/'+botId+'/topics/'+this.topic.id+'/dialogs').
-  	done((data) => {
-  	  this.dialogs = data
-  	}); 
+    this.updateDialogs()
+    this.$on('updateOnNewDialog', function(){
+       alert('Olar')
+       this.updateDialogs()
+    })
   }, 
 
   mounted(){
@@ -43,7 +43,15 @@ export default{
   	createDialog: function(){
       store.dispatch('setCurrentTopic', this.topic)
       $('#modal-new-dialog').modal('open')
-  	}
+  	}, 
+
+    updateDialogs: function(){
+      let botId = store.getters.currentBot.id
+      $.get('/bots/'+botId+'/topics/'+this.topic.id+'/dialogs').
+      done((data) => {
+        this.dialogs = data
+      });
+    }
   }, 
 
   components: {
