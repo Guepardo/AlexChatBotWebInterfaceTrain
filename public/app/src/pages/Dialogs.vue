@@ -2,7 +2,8 @@
 <div class="row">
 <hr>
   <h5>{{topic.name}} 
-    <a class="btn-floating waves-effect waves-light" @click="createDialog"><i class="material-icons">add</i></a> 
+    <a class="btn-floating waves-effect waves-light blue" @click="createDialog"><i class="material-icons">add</i></a>
+    <a class="btn-floating waves-effect waves-light red" @click="createDialog"><i class="material-icons">remove</i></a> 
   </h5>
 
   <dialog-card v-for="dialog in dialogs" :dialog="dialog"> </dialog-card>

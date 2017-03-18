@@ -1,9 +1,17 @@
 <template>
-<div class="col s3">
+<div class="col s4">
  <div class="card-panel z-depth-3">
-  <h5>{{bot.name || 'Undefined'}}</h5>
+  <h5 class="center-align">{{bot.name || 'Undefined'}}</h5>
    <span class="black-text"></span>
-   <a class="waves-effect waves-teal btn-flat" @click="selectBot">Select bot</a>
+
+   <div class="row">
+     <div class="col s6">
+         <a class="waves-effect waves-light btn" @click="selectBot">Select</a>       
+     </div>
+     <div class="col s6">
+         <a class="waves-effect waves-light btn" @click="selectBot">Delete</a>              
+     </div>
+   </div>
  </div>
 </div>	
 </template>
