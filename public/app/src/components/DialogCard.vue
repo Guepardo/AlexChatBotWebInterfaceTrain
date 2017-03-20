@@ -6,7 +6,7 @@
 </style>
 
 <template>  
-<div class="col s3 ">
+<div class="col s3">
   <div class="card blue-grey darken-1 max-height-card-dialog">
     <div class="card-content white-text">
       <span class="card-title">@{{dialog.name}}</span>

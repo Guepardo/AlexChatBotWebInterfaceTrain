@@ -14,7 +14,7 @@
 
        <div class="row">
          <div class="input-field col s12">
-            <select>
+            <select name="intent_id">
     		      <option value="" disabled selected>Choose your option</option>
     		      <option v-for="intent in intents" v-bind:value="intent.id" >#{{intent.name}}</option>
     		    </select>

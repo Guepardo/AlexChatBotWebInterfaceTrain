@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :bots do 
-  
+    get 'brain', on: :member
+
   	resources :topics do 
       resources :dialogs do
         resources :answers

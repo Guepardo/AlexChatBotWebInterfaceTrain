@@ -3,8 +3,9 @@ class IntentsController < ApplicationController
 
   # GET /intents
   def index
-    @intents = Bot.find(params[:bot_id]).intents
-
+    # TODO: Criar um membro para alimentar somente os selects. 
+    # @intents = Bot.find(params[:bot_id]).intents
+    @intents = Intent.where('bot_id = :bot_id and dialog_id is not NULL', {bot_id: params[:bot_id]})
     render json: @intents
   end
 

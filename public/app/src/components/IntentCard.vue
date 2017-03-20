@@ -12,9 +12,6 @@
       <span class="card-title">#{{intent.name}}</span>
       <p>{{intent.description}}</p>
     </div>
-<!--     <div class="card-action">
-      <a >Edit</a>
-    </div> -->
     <div class="row" style="position:absolute;bottom:0;">
       <div class="col s6">
         <a class="btn-floating waves-effect waves-light blue" @click='updateCard'><i class="material-icons">edit</i></a>         

@@ -1,5 +1,5 @@
 class BotsController < ApplicationController
-  before_action :set_bot, only: [:show, :update, :destroy]
+  before_action :set_bot, only: [:show, :update, :destroy, :brain]
 
   # GET /bots
   def index
@@ -36,6 +36,10 @@ class BotsController < ApplicationController
   # DELETE /bots/1
   def destroy
     @bot.destroy
+  end
+
+  def brain
+    render json: @bot
   end
 
   private
