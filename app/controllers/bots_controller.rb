@@ -39,7 +39,8 @@ class BotsController < ApplicationController
   end
 
   def brain
-    render json: @bot
+    data = Brain::Extractor.extract!(@bot.id)
+    send_data data.to_json, type: 'text/json;', disposition: 'attachment;', filename: 'brain.json'
   end
 
   private

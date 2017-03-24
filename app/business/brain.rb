@@ -16,7 +16,7 @@ module Brain
   	  	topic.dialogs.each do |dialog| 
   	  		intent = dialog.intent
   	  		answsers = dialog.answers
-  	  		brain.append(make_dialogs(intent, answsers))
+  	  		brain. << make_dialogs(intent, answsers)
   	  	end
   	  end
   	  brain
@@ -30,10 +30,14 @@ module Brain
   	  dialog = []
   	  intent.statements.each do |statement|
   	  	dialog_row = []
-  	  	answers.each {|answer| dialog_row.append[statement, answer]}
-  	  	dialog.append(dialog_row)
+  	  	answers.each {|answer| dialog_row << [get_text(statement), get_text(answer)]}
+  	  	dialog << dialog_row unless dialog.nil?
   	  end
   	  dialog
+  	end
+
+  	def get_text(entity)
+  	  entity.attributes['text']
   	end
   end
 end
